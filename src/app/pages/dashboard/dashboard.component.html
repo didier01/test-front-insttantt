@@ -1,0 +1,132 @@
+<app-loader *ngIf="loader"></app-loader>
+<div class="container-fluid">
+
+    <section>
+
+        <div class="container-head">
+            <p>¡Tu proxima gran idea está aquí!</p>
+        </div>
+        <div class="container-main">
+            <img src="./../../../assets/images/dash.jpg" alt="" srcset="" loading="lazy">
+
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatem, molestias aut inventore dignissimos,
+                sed
+                sit, ipsam similique molestiae dolorum tempora recusandae consectetur quam maxime nostrum qui dolore ex
+                eaque voluptas!</p>
+        </div>
+    </section>
+
+
+    <section class="container-form form-dashboard" id="container-form">
+
+        <div class="part-form">
+            <h1>Actualiza tu datos</h1>
+            <form class="register-form" action="" [formGroup]="userForm">
+                <div class="inputs">
+                    <div class="row">
+                        <fieldset>
+                            <legend>
+                                <label for="country" class="text-primary form-label">
+                                    País
+                                </label>
+                            </legend>
+                            <select (change)="changeCountry($event)"
+                                [ngClass]="{'is-invalid': validateFields('country','required')}"
+                                class="form-control custom-input" formControlName="country">
+                                <option *ngFor="let item of countries" [value]="item.country">{{item.country}}
+                                </option>
+                            </select>
+                        </fieldset>
+
+                        <span class="input-error" *ngIf="validateFields('country','required')">Este campo es
+                            obligatorio.</span>
+                    </div>
+
+                    <div class="row">
+                        <fieldset>
+                            <legend>
+                                <label for="city" class="text-primary form-label">
+                                    Cuidad
+                                </label>
+                            </legend>
+                            <select [ngClass]="{'is-invalid': validateFields('city','required')}"
+                                class="form-control custom-input" formControlName="city">
+                                <option *ngFor="let item of cities" [value]="item">{{item}}
+                                </option>
+                            </select>
+                        </fieldset>
+
+                        <span class="input-error" *ngIf="validateFields('city','required')">Este campo es
+                            obligatorio.</span>
+                    </div>
+
+
+                </div>
+
+                <div class="row">
+                    <fieldset>
+                        <legend>
+                            <label for="address" class="text-primary form-label">
+                                Dirección
+                            </label>
+                        </legend>
+                        <input type="text" name="address" class="form-control custom-input" formControlName="address"
+                            maxlength="100" minlength="10"
+                            [ngClass]="{'is-invalid': validateFields('address','required')}">
+                    </fieldset>
+
+                    <span class="input-error" *ngIf="validateFields('address','minlength')">Este campo debe contener
+                        más de 10 caracteres.</span>
+
+                    <span class="input-error" *ngIf="validateFields('address','required')">Este campo es
+                        obligatorio.</span>
+
+                </div>
+                <div class="row ">
+
+
+
+                    <ng-container *ngIf="enableCam; else withoutImage">
+                        <div class="row-camera">
+                            <button class="btn btn-enable-cam" (click)="showCamera()">Tomar foto</button>
+                            <img [src]="currentImage.imageAsDataUrl" alt="" width="100%" loading="lazy">
+                        </div>
+
+                    </ng-container>
+
+                    <ng-template #withoutImage>
+                        <div class="row-camera">
+
+                            <div class="control-buttons">
+                                <button class="btn btn-primary" (click)="takeSnapshot()">Capturar</button>
+                                <button class="btn btn-secondary-outline" (click)="onOffWebCame()">{{showWebcam ?
+                                    'Apagar': 'Encender'}} Cámara</button>
+                                <button class="btn btn-danger-outline" (click)="cleanPhoto()">Borrar</button>
+                                <button class="btn btn-danger-outline" (click)="showCamera()">Cancelar</button>
+                            </div>
+
+                            <webcam [trigger]="triggerObservable" [allowCameraSwitch]="true"
+                                (imageCapture)="handleImage($event)" *ngIf="showWebcam"
+                                [switchCamera]="nextWebcamObservable" mirrorImage="never"></webcam>
+
+                        </div>
+                    </ng-template>
+
+                </div>
+            </form>
+
+            <div class="container-buttons">
+                <button class="btn-submit-form" (click)="submitForm()">Guardar</button>
+            </div>
+        </div>
+
+        <div class="part-info">
+            <div class="image-part-info">
+                <img src="./../../../assets/icons/logo-2.jpg" alt="" srcset="">
+            </div>
+            <div class="text">
+                Queremos que tus datos siempre estén actualizados para poder brindarte los mejores beneficios
+            </div>
+        </div>
+    </section>
+</div>

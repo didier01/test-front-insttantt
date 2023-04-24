@@ -1,0 +1,90 @@
+%default-toast {
+  position: fixed;
+  right: 0;
+  top: 0;
+  margin: 2rem;
+  display: inline-flex;
+  min-width: 250px;
+  min-height: 70px;
+  box-shadow: 6px 6px 12px #00000040;
+  background-color: white;
+  overflow: hidden;
+  z-index: 9999999 !important;
+
+  flex-flow: row nowrap;
+  align-items: center;
+  justify-content: space-between;
+  border-left: 6px solid black;
+  padding: 1.5rem;
+  border-radius: 15px;
+  font-size: 0.8rem;
+
+  button,
+  button:focus,
+  button:active {
+    outline: none;
+    border: none;
+    text-decoration: none;
+    color: var(--second_secondary);
+    font-size: 12px;
+    padding: 0 0 0 0;
+  }
+  button:hover {
+    i {
+      color: #0a0a2a;
+    }
+  }
+
+  .toast-body {
+    width: 90%;
+  }
+}
+
+.toast {
+}
+
+// Default toast
+.toast-class {
+  @extend %default-toast;
+}
+
+// Success
+.success-toast {
+  @extend %default-toast;
+  .me-auto {
+    color: var(--blue_primary);
+  }
+  border-left: 10px solid var(--blue_primary);
+}
+
+// Warning
+.warning-toast {
+  @extend %default-toast;
+  .me-auto {
+    color: var(--warning);
+  }
+  border-left: 10px solid var(--warning);
+}
+
+// Danger
+.danger-toast {
+  @extend %default-toast;
+  .me-auto {
+    color: var(--red_primary);
+  }
+  border-left: 10px solid var(--red_primary);
+}
+
+// Info
+.info-toast {
+  @extend %default-toast;
+  .me-auto {
+    color: var(--secondary);
+  }
+  border-left: 10px solid var(--secondary);
+}
+
+// Setting Icon
+.me-auto {
+  font-size: 2rem;
+}

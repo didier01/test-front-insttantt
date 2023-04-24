@@ -1,0 +1,178 @@
+<app-loader *ngIf="loader"></app-loader>
+<section class="container-form " id="container-form">
+    <div class="part-info">
+        <div class="image-part-info">
+            <img src="./../../../../assets/icons/logo-2.jpg" alt="" srcset="">
+        </div>
+        <div class="text">
+            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nam distinctio porro facilis? Fuga ad neque,
+            similique quo perferendis in! Deserunt ducimus architecto dignissimos. Aperiam sed, repudiandae saepe dolore
+            ratione accusantium?
+        </div>
+    </div>
+    <div class="part-form">
+        <h1>Crear una cuenta nueva</h1>
+        <form class="register-form" action="" [formGroup]="registerForm">
+
+            <div class="inputs">
+
+                <div class="row">
+                    <fieldset>
+                        <legend>
+                            <label for="documentType" class="text-primary form-label">
+                                Tipo de documento *
+                            </label>
+                        </legend>
+                        <select class="form-control custom-input"
+                            [ngClass]="{'is-invalid': validateFields('documentType','required')}"
+                            formControlName="documentType">
+                            <option *ngFor="let item of documentTypes" [value]="item.id">{{item.name}}
+                            </option>
+                        </select>
+                    </fieldset>
+
+                    <span class="input-error" *ngIf="validateFields('documentType','required')">Este campo es
+                        obligatorio.</span>
+                </div>
+
+                <div class="row">
+                    <fieldset>
+                        <legend>
+                            <label for="documentNumber" class="text-primary form-label">
+                                Número de documento *
+                            </label>
+                        </legend>
+                        <input type="number" name="documentNumber" class="form-control custom-input"
+                            formControlName="documentNumber"
+                            [ngClass]="{'is-invalid': validateFields('documentNumber','required')}">
+                    </fieldset>
+
+                    <span class="input-error" *ngIf="validateFields('documentNumber','required')">Este campo es
+                        obligatorio.</span>
+                </div>
+            </div>
+
+            <div class="row">
+                <fieldset>
+                    <legend>
+                        <label for="expeditionDate" class="text-primary form-label">
+                            Fecha de expedición *
+                        </label>
+                    </legend>
+                    <input type="date" name="expeditionDate" class="form-control custom-input"
+                        formControlName="expeditionDate"
+                        [ngClass]="{'is-invalid': validateFields('expeditionDate','required')}" [max]="todayDate">
+                </fieldset>
+
+                <span class="input-error" *ngIf="validateFields('expeditionDate','required')">Este campo es
+                    obligatorio.</span>
+
+            </div>
+
+            <div class="inputs">
+                <div class="row">
+                    <fieldset>
+                        <legend>
+                            <label for="firstname" class="text-primary form-label">
+                                Nombre *
+                            </label>
+                        </legend>
+                        <input name="firstname" class="form-control custom-input" formControlName="firstname"
+                            [ngClass]="{'is-invalid': validateFields('firstname','required')}" minlength="2"
+                            maxlength="100">
+                    </fieldset>
+
+                    <span class="input-error" *ngIf="validateFields('firstname','required')">Este campo es
+                        obligatorio.</span>
+
+                    <span class="input-error" *ngIf="validateFields('firstname','minlength')">Este campo debe contener
+                        más de
+                        2 caracteres.</span>
+
+                </div>
+
+                <div class="row">
+                    <fieldset>
+                        <legend>
+                            <label for="lastname" class="text-primary form-label">
+                                Apellido *
+                            </label>
+                        </legend>
+                        <input name="lastname" class="form-control custom-input" formControlName="lastname"
+                            [ngClass]="{'is-invalid': validateFields('lastname','required')}" minlength="2"
+                            maxlength="100">
+                    </fieldset>
+
+                    <span class="input-error" *ngIf="validateFields('lastname','required')">Este campo es
+                        obligatorio.</span>
+
+                    <span class="input-error" *ngIf="validateFields('firstname','minlength')">Este campo debe contener
+                        más de
+                        2 caracteres.</span>
+
+                </div>
+            </div>
+
+
+
+            <div class="row">
+                <fieldset>
+                    <legend>
+                        <label for="birthdate" class="text-primary form-label">
+                            Fecha de nacimiento *
+                        </label>
+                    </legend>
+                    <input type="date" name="birthdate" class="form-control custom-input" formControlName="birthdate"
+                        (change)="validateAdultAge()"
+                        [ngClass]="{'is-invalid': validateFields('birthdate','required')}">
+                </fieldset>
+
+                <span class="input-error" *ngIf="validateFields('birthdate','required')">Este campo es
+                    obligatorio.</span>
+
+            </div>
+
+            <div class="row">
+                <fieldset>
+                    <legend>
+                        <label for="phoneNumber" class="text-primary form-label">
+                            Número de telefono *
+                        </label>
+                    </legend>
+                    <input type="text" onkeypress="if (event.keyCode > 57) event.returnValue = false;"
+                        name="phoneNumber" class="form-control custom-input" formControlName="phoneNumber"
+                        maxlength="10" [ngClass]="{'is-invalid': validateFields('phoneNumber','required')}">
+                </fieldset>
+
+                <span class="input-error" *ngIf="validateFields('phoneNumber','required')">Este campo es
+                    obligatorio.</span>
+            </div>
+            <div class="row">
+                <fieldset>
+                    <legend>
+                        <label for="email" class="text-primary form-label">
+                            Correo electrónico *
+                        </label>
+                    </legend>
+                    <input type="email" name="email" class="form-control custom-input" formControlName="email"
+                        [ngClass]="{'is-invalid': validateFields('email','required')}">
+                </fieldset>
+
+                <span class="input-error" *ngIf="validateFields('email','required')">Este campo es
+                    obligatorio.</span>
+
+                <span class="input-error" *ngIf="validateFields('email', 'pattern')">El correo electrónico no es
+                    válido</span>
+
+            </div>
+
+        </form>
+
+        <div class="container-buttons">
+
+            <button class="btn-submit-form" (click)="submitForm()">Crear cuenta</button>
+
+            <button class="btn-login" [routerLink]="['/auth/login']">Iniciar sesión</button>
+        </div>
+    </div>
+</section>

@@ -1,0 +1,13 @@
+:root {
+    --red_primary: #b51700;
+    --blue_primary: #171447;
+    --info: #3480e4;
+    --warning: #f28b37;
+    --danger: #ea4335;
+    --success: #7bd468;
+    --gray_primary: #434343;
+    --gray_secondary: #b8b6b6;
+    --size-bezel: 1rem;
+    --size-radius: 5px;
+  }
+  

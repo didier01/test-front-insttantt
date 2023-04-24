@@ -1,0 +1,61 @@
+<app-loader *ngIf="loader"></app-loader>
+
+<section class="container-form " id="container-form">
+
+    <div class="part-form">
+        <h1>Inicio de sesión</h1>
+        <form class="register-form" action="" [formGroup]="loginForm">
+
+
+            <div class="row">
+                <fieldset>
+                    <legend>
+                        <label for="user" class="text-primary form-label">
+                            Usuario *
+                        </label>
+                    </legend>
+                    <input name="user" class="form-control custom-input" formControlName="user"
+                        [ngClass]="{'is-invalid': validateFields('user','required')}">
+                </fieldset>
+
+                <span class="input-error" *ngIf="validateFields('user','required')">Este campo es
+                    obligatorio.</span>
+
+            </div>
+
+            <div class="row">
+                <fieldset>
+                    <legend>
+                        <label for="password" class="text-primary form-label">
+                            Contraseña *
+                        </label>
+                    </legend>
+                    <input type="password" name="password" class="form-control custom-input" formControlName="password"
+                        [ngClass]="{'is-invalid': validateFields('password','required')}">
+                </fieldset>
+
+                <span class="input-error" *ngIf="validateFields('password','required')">Este campo es
+                    obligatorio.</span>
+            </div>
+
+        </form>
+
+        <div class="container-buttons">
+
+            <button class="btn-submit-form" (click)="submitForm()">Iniciar sesión</button>
+
+            <button class="btn-create-account" [routerLink]="['/auth/register']">Crear cuenta</button>
+        </div>
+    </div>
+
+    <div class="part-info">
+        <div class="image-part-info">
+            <img src="./../../../../assets/icons/logo-2.jpg" alt="" srcset="">
+        </div>
+        <div class="text">
+            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nam distinctio porro facilis? Fuga ad neque,
+            similique quo perferendis in! Deserunt ducimus architecto dignissimos. Aperiam sed, repudiandae saepe dolore
+            ratione accusantium?
+        </div>
+    </div>
+</section>

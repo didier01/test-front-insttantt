@@ -1,0 +1,46 @@
+.part-info {
+  background-color: var(--blue_primary);
+}
+
+.btn-submit-form {
+  background-color: var(--blue_primary);
+}
+
+.container-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+
+  .btn-create-account {
+    background: none;
+    border: 1px solid var(--red_primary);
+    padding: 10px 30px;
+    border-radius: var(--size-radius);
+
+    color: var(--red_primary);
+    width: fit-content;
+    font-size: 16px;
+  }
+}
+
+.image-part-info {
+  text-align: center;
+  margin-bottom: 2rem;
+  img {
+    width: 220px;
+    border-radius: 50%;
+  }
+}
+
+@media screen and (max-width: 767px){
+  .container-form {
+      display: flex;
+      flex-direction: column-reverse;
+      height: auto;
+  }
+  .image-part-info img {
+    width: 150px;
+    border-radius: 50%;
+  }
+  
+}
